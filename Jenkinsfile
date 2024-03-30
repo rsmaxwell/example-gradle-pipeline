@@ -35,7 +35,15 @@ pipeline {
 
             echo 'packaging the application'
             sh('./scripts/package.sh')
+          }
+        }
+      }
+    }
 
+    stage('deploy') {
+      steps {
+        container('maven') {
+          dir('project') {
             echo 'deploying the application'
             sh('./scripts/deploy.sh')
           }
