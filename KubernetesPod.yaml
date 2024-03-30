@@ -39,6 +39,20 @@ spec:
       name: maven-settings
       readOnly: true
 
+
+
+  - name: gradle
+    image: gradle:8.7.0
+    command:
+    - cat
+    tty: true
+    workingDir: /home/gradle/project
+    volumeMounts:
+    - mountPath: /home/gradle/project
+      name: gradle-vol
+
+
+
   volumes:
   - name: maven-vol
     persistentVolumeClaim:
@@ -50,3 +64,6 @@ spec:
   - name: golang-vol
     persistentVolumeClaim:
       claimName: golang-pvc
+  - name: gradle-vol
+    persistentVolumeClaim:
+      claimName: gradle-pvc
