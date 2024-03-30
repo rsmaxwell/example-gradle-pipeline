@@ -26,6 +26,10 @@ pipeline {
     stage('build') {
       steps {
         container('gradle') {
+
+          sh('pwd')
+          sh('ls -al')
+
           dir('project') {
             echo 'build the application'
             sh('./scripts/build.sh')
