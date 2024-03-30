@@ -1,1 +1,1 @@
-# example-java-gradle-pipeline
+# example-gradle-pipeline
