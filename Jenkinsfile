@@ -27,8 +27,8 @@ pipeline {
       steps {
         container('gradle') {
 
-          sh('pwd')
-          sh('ls -al')
+          echo '*** debug ***'
+          sh('./scripts/debug.sh')
 
           dir('project') {
             echo 'build the application'
