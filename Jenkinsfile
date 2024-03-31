@@ -19,8 +19,8 @@ pipeline {
             ])
             sh('./scripts/prepare.sh')
 
-          echo '*** debug (1) ***'
-          sh('./scripts/debug.sh')
+            echo '*** debug (1) ***'
+            sh('./scripts/debug.sh')
           }
         }
       }
@@ -28,7 +28,7 @@ pipeline {
 
     stage('build') {
       steps {
-        container('tools') {
+        container('gradle') {
           dir('project') {
             echo '*** debug (2) ***'
             sh('./scripts/debug.sh')
