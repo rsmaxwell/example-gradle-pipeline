@@ -28,8 +28,8 @@ pipeline {
 
     stage('build') {
       steps {
-        container('gradle') {
-          dir('${WORKSPACE}/project') {
+        container('tools') {
+          dir('project') {
             echo '*** debug (2) ***'
             sh('./scripts/debug.sh')
 
