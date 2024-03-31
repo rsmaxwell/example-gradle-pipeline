@@ -29,17 +29,10 @@ pipeline {
     stage('build') {
       steps {
         container('gradle') {
+          dir('${WORKSPACE}/project') {
+            echo '*** debug (2) ***'
+            sh('./scripts/debug.sh')
 
-          echo '*** debug (2) ***'
-          sh('id -a')
-          sh('pwd')
-          sh('ls -al')
-          sh('set')
-
-          echo '*** debug (3) ***'
-          sh('./scripts/debug.sh')
-
-          dir('project') {
             echo 'build the application'
             sh('./scripts/build.sh')
 
