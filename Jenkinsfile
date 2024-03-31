@@ -18,6 +18,9 @@ pipeline {
               userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/example-java-gradle']]
             ])
             sh('./scripts/prepare.sh')
+
+          echo '*** debug (1) ***'
+          sh('./scripts/debug.sh')
           }
         }
       }
@@ -27,7 +30,13 @@ pipeline {
       steps {
         container('gradle') {
 
-          echo '*** debug ***'
+          echo '*** debug (2) ***'
+          sh('id -a')
+          sh('pwd')
+          sh('ls -al')
+          sh('set')
+
+          echo '*** debug (3) ***'
           sh('./scripts/debug.sh')
 
           dir('project') {
