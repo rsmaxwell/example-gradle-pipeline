@@ -15,32 +15,9 @@ pipeline {
               $class: 'GitSCM', 
               branches: [[name: '*/main']], 
               extensions: [], 
-              userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/example-java-gradle']]
+              userRemoteConfigs: [[url: 'https://github.com/rsmaxwell/example-gradle']]
             ])
             sh('./scripts/prepare.sh')
-
-            echo '*** debug (1) ***'
-            sh('./scripts/debug.sh')
-          }
-        }
-      }
-    }
-
-    stage('build') {
-      steps {
-        container('gradle') {
-          dir('project') {
-            echo '*** debug (2) ***'
-            sh('./scripts/debug.sh')
-
-            echo 'build the application'
-            sh('./scripts/build.sh')
-
-            echo 'testing the application'
-            sh('./scripts/test.sh')
-
-            echo 'packaging the application'
-            sh('./scripts/package.sh')
           }
         }
       }
@@ -48,7 +25,7 @@ pipeline {
 
     stage('deploy') {
       steps {
-        container('maven') {
+        container('gradle') {
           dir('project') {
             echo 'deploying the application'
             sh('./scripts/deploy.sh')
