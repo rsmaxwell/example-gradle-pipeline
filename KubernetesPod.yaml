@@ -42,11 +42,10 @@ spec:
 
 
   - name: gradle
-    image: gradle:8.7.0
+    image: eclipse-temurin:11-jammy
     command:
     - cat
     tty: true
-    workingDir: /home/gradle/project
     volumeMounts:
     - mountPath: /home/gradle/project
       name: gradle-vol
