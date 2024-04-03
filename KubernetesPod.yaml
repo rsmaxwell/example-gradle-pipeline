@@ -42,12 +42,12 @@ spec:
 
 
   - name: gradle
-    image: eclipse-temurin:11-jammy
+    image: rsmaxwell/gradle:latest
     command:
     - cat
     tty: true
     volumeMounts:
-    - mountPath: /home/gradle/project
+    - mountPath: /home/gradle
       name: gradle-vol
 
 
