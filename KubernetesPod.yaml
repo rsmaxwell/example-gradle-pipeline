@@ -13,19 +13,19 @@ spec:
     tty: true
 
   - name: gcc
-    image: gcc:latest
+    image: gcc:11
     command:
     - cat
     tty: true
 
   - name: golang
-    image: golang:latest
+    image: golang:bookworm
     command:
     - cat
     tty: true
     volumeMounts:
     - mountPath: /go/pkg
-      name: golang-vol
+      name: golang-data
 
   - name: maven
     image: maven:3.8.6-eclipse-temurin-17
@@ -33,13 +33,8 @@ spec:
     - cat
     tty: true
     volumeMounts:
-    - mountPath: /root/.m2/repository
-      name: maven-vol
     - mountPath: /root/.m2
-      name: maven-settings
-      readOnly: true
-
-
+      name: maven-data
 
   - name: gradle
     image: rsmaxwell/gradle:latest
@@ -53,14 +48,10 @@ spec:
 
 
   volumes:
-  - name: maven-vol
+  - name: maven-data
     persistentVolumeClaim:
       claimName: maven-pvc
-  - name: maven-settings
-    secret:
-      secretName: maven-settings
-      optional: false
-  - name: golang-vol
+  - name: golang-data
     persistentVolumeClaim:
       claimName: golang-pvc
   - name: gradle-vol
