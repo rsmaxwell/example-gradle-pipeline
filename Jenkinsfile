@@ -34,8 +34,13 @@ pipeline {
       steps {
         container('gradle') {
           dir('project') {
-            echo 'deploying the application'
-            sh('./scripts/deploy.sh')
+            withEnv([
+              'GRADLE_USER_HOME=/home/gradle/.gradle',
+              'HOME=/home/gradle'
+            ]) {
+              echo 'deploying the application'
+              sh('./scripts/deploy.sh')
+            }
           }
         }
       }
